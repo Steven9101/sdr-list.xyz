@@ -28,13 +28,15 @@ def init_db():
             center_frequency INTEGER,
             last_update TIMESTAMP,
             ip TEXT,
-            port INTEGER
+            port INTEGER,
+            grid_locator TEXT
         )
     ''')
     conn.commit()
     conn.close()
 
 init_db()
+
 
 # Function to remove inactive WebSDRs
 def remove_inactive_websdrs():
@@ -51,13 +53,17 @@ def remove_inactive_websdrs():
         # Check every 10 seconds
         time.sleep(10)
 
+
+
+
+
 @app.route('/update_websdr', methods=['POST'])
 def update_websdr():
     websdr_data = request.get_json()
     conn = get_db_connection()
     conn.execute('''
-        INSERT INTO websdrs (id, name, bandwidth, users, antenna, center_frequency, last_update, ip, port)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO websdrs (id, name, bandwidth, users, antenna, center_frequency, last_update, ip, port, grid_locator)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ON CONFLICT(id) DO UPDATE SET
             name=excluded.name,
             bandwidth=excluded.bandwidth,
@@ -66,7 +72,8 @@ def update_websdr():
             center_frequency=excluded.center_frequency,
             last_update=excluded.last_update,
             ip=excluded.ip,
-            port=excluded.port
+            port=excluded.port,
+            grid_locator=excluded.grid_locator
     ''', (
         websdr_data['id'],
         websdr_data['name'],
@@ -76,11 +83,13 @@ def update_websdr():
         websdr_data['center_frequency'],
         datetime.now(),
         request.headers.get('X-Real-IP', request.remote_addr),
-        websdr_data['port']
+        websdr_data['port'],
+        websdr_data['grid_locator']
     ))
     conn.commit()
     conn.close()
     return jsonify({'message': 'WebSDR data updated successfully'}), 201
+
 
 @app.route('/get_websdrs', methods=['GET'])
 def get_websdrs():
