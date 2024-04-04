@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .table-fixed {
     width: 100%;
     table-layout: fixed;
@@ -17,3 +18,7 @@
   
 
 
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
