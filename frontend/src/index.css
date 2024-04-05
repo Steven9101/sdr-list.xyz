@@ -2,23 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body, #root, .App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 
 .table-fixed {
-    width: 100%;
-    table-layout: fixed;
+  width: 100%;
+  table-layout: fixed;
 }
-  
+
 .table-fixed td {
-    vertical-align: middle; /* Align content vertically */
-    overflow: hidden;       /* Hide overflow content */
-    text-overflow: ellipsis;/* Display '...' for overflow text */
-    white-space: nowrap;    /* No wrapping of content to a new line */
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
   }
-
-  
-
-
-
-  ::-webkit-scrollbar {
-    display: none;
+  to {
+    opacity: 1;
   }
+}
+
+#map {
+  height: 100%
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.8s cubic-bezier(0.250, 0.100, 0.250, 1.000) forwards;
+  opacity: 0; /* Ensures items are initially invisible */
+}
