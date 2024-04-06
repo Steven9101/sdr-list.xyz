@@ -12,10 +12,25 @@ async function fetchReceivers() {
 }
 
 function getLink(receiver) {
-  if (receiver.hostname.length > 0) {
+  // Check if the receiver input is a URL starting with http://
+  if (receiver.hostname.startsWith('http://')) {
+    // Extract the hostname from the URL
+    const url = new URL(receiver.hostname);
+    // Check if the URL already has a port specified
+    if (url.port) {
+      // Return the URL as is if it already has a port
+      return receiver;
+    } else {
+      // Append the specified port if the URL does not have one
+      return `${url.protocol}//${url.hostname}:${receiver.port}`;
+    }
+  } else if (receiver.hostname && receiver.hostname.length > 0) {
+    // Handle the case where receiver is an object with hostname and port
     return `http://${receiver.hostname}:${receiver.port}`;
+  } else {
+    // Handle the case where receiver is an object with ip and port
+    return `http://${receiver.ip}:${receiver.port}`;
   }
-  return `http://${receiver.ip}:${receiver.port}`;
 }
 
 
