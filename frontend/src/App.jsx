@@ -12,26 +12,23 @@ async function fetchReceivers() {
 }
 
 function getLink(receiver) {
-  // Check if the receiver input is a URL starting with http://
+
   if (receiver.hostname.startsWith('http://')) {
-    // Extract the hostname from the URL
+
     const url = new URL(receiver.hostname);
-    // Check if the URL already has a port specified
+
     if (url.port) {
-      // Return the URL as is if it already has a port
       return receiver;
     } else {
-      // Append the specified port if the URL does not have one
       return `${url.protocol}//${url.hostname}:${receiver.port}`;
     }
   } else if (receiver.hostname && receiver.hostname.length > 0) {
-    // Handle the case where receiver is an object with hostname and port
     return `http://${receiver.hostname}:${receiver.port}`;
   } else {
-    // Handle the case where receiver is an object with ip and port
     return `http://${receiver.ip}:${receiver.port}`;
   }
 }
+
 
 
 function getFlagImage(receiver) {
@@ -58,7 +55,7 @@ function getRangeText(receiver) {
   let start = (receiver.center_frequency - receiver.bandwidth / 2) / 1000000;
   let end = (receiver.center_frequency + receiver.bandwidth / 2) / 1000000;
 
-  return `${start.toFixed(2)} - ${end.toFixed(2)} mhz`;
+  return `${start.toFixed(2)} - ${end.toFixed(2)}`;
 }
 
 function checkReceiverFilter(filterFrequency, receiver) {
@@ -154,98 +151,117 @@ function updateReceiverList(setReceivers) {
 }
 
 
+
+function Receiver(props) {
+  return (
+
+    <a
+      key={props.receiver.id}
+      className='w-72 md:w-96 block opacity-0 shadow shadow-gray-400 dark:shadow-slate-700 border border-gray-300 dark:border-slate-600 p-2 rounded bg-white dark:bg-slate-800 m-1 w-full my-2 animate-scaleIn'
+      style={{ animationDelay: `${100 * props.index}ms` }} // Inline style for delay
+      target="_blank"
+      href={getLink(props.receiver)}
+    >
+
+      <div className='flex items-center justify-center'>
+        <p className='text-center font-light text-xl whitespace-nowrap md:max-w-72 max-w-64 text-ellipsis overflow-hidden'>{props.receiver.name}</p>
+      </div>
+   
+      <p className='font-thin text-6xl text-center mt-2'>#{props.index + 1}</p>
+
+      <div className="flex flex-row items-center justify-between mt-3">
+
+        <div className='flex'>
+          <div className='flex justify-center items-center w-6'>
+            <i className="fa-solid fa-location-dot"></i>
+          </div>
+
+          <p className='pl-2'>Location</p>
+        </div>
+
+
+        <div className='flex items-center justify-center bg-sky-100 w-36 md:w-48 text-center dark:bg-sky-500 px-1 rounded'>
+          <img className='inline w-6 bg-gray-200 dark:bg-slate-100' src={getFlagImage(props.receiver)} />
+          <p className='ml-2'>{props.receiver.grid_locator}</p>
+          
+        </div>
+
+      </div>
+
+
+
+
+      <div className="flex flex-row items-center justify-between mt-1">
+
+        <div className='flex'>
+          <div className='flex justify-center items-center w-6'>
+            <i className="fa-solid fa-left-right"></i>
+          </div>
+
+          <span className='pl-2'>Range</span>
+        </div>
+
+
+        <div>
+          <p className='bg-yellow-100 w-36 md:w-48 text-center dark:bg-yellow-600 px-1 rounded'>{getRangeText(props.receiver)}</p>
+        </div>
+
+      </div>
+
+
+
+      <div className="flex flex-row items-center justify-between mt-1">
+
+        <div className='flex'>
+          <div className='flex justify-center items-center w-6'>
+            <i className="fa-solid fa-tower-cell"></i>
+          </div>
+
+          <p className='pl-2'>Antenna</p>
+        </div>
+
+
+        <div>
+          <p className='bg-indigo-100 w-36 md:w-48 text-center whitespace-nowrap text-ellipsis dark:bg-indigo-500 overflow-hidden rounded px-1'>{props.receiver.antenna}</p>
+        </div>
+
+      </div>
+
+
+      <div className="flex flex-row items-center justify-between mt-1">
+
+        <div className='flex'>
+          <div className='flex justify-center items-center w-6'>
+            <i className="fa-regular fa-user"></i>
+          </div>
+
+          <span className='pl-2'>Users</span>
+        </div>
+
+
+        <div>
+          <p className='bg-green-200 w-36 md:w-48 dark:bg-green-500 text-center px-1 rounded'>{props.receiver.users}</p>
+        </div>
+
+      </div>
+
+
+    </a>
+
+  )
+}
+
+
 function SDRList(props) {
   return (
 
-    <div className='text-black dark:text-white items-center w-72 my-2'>
-
+    <div className={'flex flex-col justify-center text-black dark:text-white items-center pb-10 md:grid-cols-2 gap-x-5 ' + (props.filterFrequency > -1 ?  "" : "md:grid")}>
       {getSortedAndFilteredReceiverList(props).map((receiver, index) =>
-
-        <a
-          key={receiver.id}
-          className='w-full block opacity-0 shadow shadow-gray-400 dark:shadow-slate-700 border border-gray-300 dark:border-slate-600 p-2 rounded bg-white dark:bg-slate-800 m-1 w-full my-2 animate-scaleIn'
-          style={{ animationDelay: `${200 * index}ms` }} // Inline style for delay
-          target="_blank"
-          href={getLink(receiver)}
-        >
-
-          <p className='font-bold truncate text-center'>{receiver.name}</p>
-
-          <div className='flex justify-center items-center flex-col mt-2'>
-
-            <table className='table-fixed'>
-
-              <tbody>
-
-                <tr className='border-b border-gray-300 dark:border-slate-700'>
-                  <td className='flex'>
-
-                    <div className='flex justify-center items-center w-6'>
-                      <i className="fa-solid fa-location-dot"></i>
-                    </div>
-
-                    <span className='pl-2'>Location</span>
-                  </td>
-                  <td>
-                    <img className='w-6 block bg-gray-200 dark:bg-slate-100' src={getFlagImage(receiver)} />
-                  </td>
-                </tr>
-
-                <tr className='border-b border-gray-300 dark:border-slate-700'>
-                  <td className='flex'>
-
-                    <div className='flex justify-center items-center w-6'>
-                      <i className="fa-solid fa-left-right"></i>
-                    </div>
-
-                    <span className='pl-2'>Range</span>
-                  </td>
-                  <td>
-                    {getRangeText(receiver)}
-                  </td>
-                </tr>
-
-                <tr className='border-b border-gray-300 dark:border-slate-700'>
-                  <td className='flex'>
-
-                    <div className='flex justify-center items-center w-6'>
-                      <i className="fa-solid fa-tower-cell"></i>
-                    </div>
-
-                    <span className='pl-2'>Antenna</span>
-                  </td>
-                  <td>
-                    {receiver.antenna}
-                  </td>
-                </tr>
-
-                <tr>
-                  <td className='flex'>
-
-                    <div className='flex justify-center items-center w-6'>
-                      <i className="fa-regular fa-user"></i>
-                    </div>
-
-                    <span className='pl-2'>Users</span>
-                  </td>
-                  <td>
-                    {receiver.users}
-                  </td>
-                </tr>
-
-              </tbody>
-
-            </table>
-
-          </div>
-
-        </a>
-
+        <Receiver receiver={receiver} index={index}></Receiver>
       )}
     </div>
   );
 }
-
 
 
 
@@ -390,7 +406,7 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-col items-center select-none h-full dark:bg-slate-900 ">
+      <div className="flex flex-col items-center select-none h-full dark:bg-slate-900">
         <div className='dark:bg-slate-800 w-full border-b dark:border-slate-600 border-slate-300 p-2'>
           <h1 className='dark:text-white text-slate-500 text-center font-bold'>SDR List</h1>
         </div>
