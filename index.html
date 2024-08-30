@@ -52,7 +52,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 50px 0;
+            padding: 100px 0;
         }
 
         h1, h2, h3 {
@@ -61,7 +61,7 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 5rem;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
@@ -69,18 +69,18 @@
         }
 
         h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
         }
 
         h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             color: var(--accent-color);
         }
 
         p {
-            font-size: 1rem;
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
             max-width: 800px;
         }
@@ -90,17 +90,23 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 600;
+            padding: 0 5px;
         }
 
         .highlight-white {
             color: var(--text-color);
             font-weight: 600;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .highlight-accent {
+            color: var(--accent-color);
+            font-weight: 600;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             margin-bottom: 2rem;
         }
 
@@ -117,8 +123,8 @@
         }
 
         #tagline {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .tagline-word {
@@ -138,7 +144,7 @@
 
         .btn {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: var(--text-color);
             text-decoration: none;
@@ -162,7 +168,7 @@
         #nav a {
             color: var(--text-color);
             text-decoration: none;
-            margin-left: 15px;
+            margin-left: 20px;
             font-weight: 600;
             transition: color 0.3s ease;
         }
@@ -175,12 +181,11 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0 15px;
-            overflow-x: auto;
         }
 
         .comparison-table th,
         .comparison-table td {
-            padding: 12px;
+            padding: 15px;
             text-align: left;
             background-color: rgba(255, 255, 255, 0.05);
         }
@@ -204,7 +209,7 @@
         }
 
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             -webkit-background-clip: text;
@@ -213,31 +218,78 @@
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
             h2 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             h3 {
                 font-size: 1.5rem;
             }
 
+            p {
+                font-size: 1rem;
+            }
+
             #tagline {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .grid {
                 grid-template-columns: 1fr;
             }
 
-            #nav {
+            .comparison-table {
+                display: block;
+                width: 100%;
+            }
+
+            .comparison-table thead {
                 display: none;
             }
 
-            .comparison-table {
-                font-size: 0.9rem;
+            .comparison-table tbody, .comparison-table tr, .comparison-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .comparison-table tr {
+                margin-bottom: 15px;
+                background-color: rgba(255, 255, 255, 0.05);
+                border-radius: 10px;
+            }
+
+            .comparison-table td {
+                text-align: left;
+                padding: 10px;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            .comparison-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                font-weight: bold;
+                color: var(--accent-color);
+            }
+
+            #nav {
+                position: static;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding: 10px 0;
+                background-color: rgba(5, 5, 5, 0.8);
+            }
+
+            #nav a {
+                margin: 5px 10px;
             }
         }
     </style>
@@ -257,154 +309,186 @@
         <div class="container">
             <h1>PhantomSDR-Plus</h1>
             <div id="tagline">
-                <span class="tagline-word highlight-white">The next generation</span>
+                <span class="tagline-word highlight-white">Redefining</span>
                 <span class="tagline-word highlight">WebSDR</span>
-                <span class="tagline-word">solution</span>
+                <span class="tagline-word">Technology</span>
             </div>
-            <p>Experience <span class="highlight-white">PhantomSDR-Plus</span>, offering <span class="highlight-white">unparalleled</span> performance,  <span class="highlight-white">scalability</span>, and flexibility that  <span class="highlight-white">revolutionizes</span> online radio reception.</p>
-            <a href="#features" class="btn">Explore Features</a>
+            <p>Welcome to the future of online radio reception. PhantomSDR-Plus isn't just another WebSDR - it's a <span class="highlight-accent">game-changer</span>. Open-source, wickedly efficient, and built to handle crowds, this is the WebSDR you've been waiting for.</p>
+            <a href="#features" class="btn">Dive In</a>
+        </div>
+    </section>
 
+    <section id="intro">
+        <div class="container">
+            <h2>Introducing PhantomSDR-Plus</h2>
+            <p>Welcome to the future in WebSDR technology. PhantomSDR-Plus marks a <span class="highlight-accent">quantum leap</span> in online radio reception, providing <span class="highlight-accent">unparalleled power, efficiency, and ease of use</span> for the worldwide radio amateur fraternity.</p>
+
+            <p>Born from passion for radio and from the need to develop what was there but not yet fully realized with WebSDR, PhantomSDR-Plus condenses the best of <span class="highlight-accent">state-of-the-art technology</span> with an <span class="highlight-accent">open-source ethos</span>, thus guaranteeing a truly <span class="highlight-accent">next-generation platform</span>.</p>
+
+            <p>Whether one is an active amateur radio user or even a curious newcomer in the hobby, PhantomSDRPlus has <span class="highlight-accent">something for everyone</span>. Now let's take a closer look at what actually makes this platform so special.</p>
+                
+        </div>
+    </section>
+
+    <section id="project-background">
+        <div class="container">
+            <h2>The Evolution of WebSDR Technology</h2>
+            <p>The landscape has significantly been developed over the years. Contributions such as the WebSDR software, originally developed at Twente University by PA3FWM using the <span class="highlight-accent">overlap-add method</span>, have been one of the key highlights to the field. However, the publicly available version is extremely limited, and the more advanced 30MHz capable version remains private.</p>
+            <p>This created a field for innovations. PhantomSDR-Plus emerged as an answer to a call for a <span class="highlight-accent">full open-source high-performance WebSDR solution</span> open to anybody. The main point of our project was to push the limits in what is possible within WebSDR technology and keep it open for the entire community.</p>
+            <p>PhantomSDR-Plus builds upon the overlap-add method, incorporating a number of <span class="highlight-accent">modern optimizations</span>, and is fully <span class="highlight-accent">committed to openness</span>. We believe we have created something both powerful and efficient, entirely free, as well as open to be used, modified, and contributed to by anyone.</p>
+            <p>By opening up PhantomSDR-Plus and making it free for a wide array of hardware, we <span class="highlight-accent">let users all over the world</span>, without any strings attached, create high-quality WebSDR stations. This brings forth novelty and collaboration in return for democratizing WebSDR technology.</p>
         </div>
     </section>
 
     <section id="features">
-        <canvas id="featuresCanvas"></canvas>
         <div class="container">
-            <h2>Why Choose PhantomSDR-Plus?</h2>
+            <h2>Key Features of PhantomSDR-Plus</h2>
             <div class="grid">
                 <div class="grid-item">
-                    <i class="fas fa-tachometer-alt feature-icon"></i>
-                    <h3>Unlimited Bandwidth</h3>
-                    <p>Push beyond <span class="highlight-white">traditional </span>limits. PhantomSDR-Plus <span class="highlight-white">scales</span> with your hardware, offering bandwidth constrained <span class="highlight-white">only</span> by your CPU and GPU capabilities.</p>
+                    <h3>Wideband Reception</h3>
+                    <p>PhantomSDR-Plus has impressive capability in wideband reception, being able to process from advanced receivers like the RX-888 MKII up to <span class="highlight-accent">64 MHz</span> of digitized spectrum (even more with stronger SDR's).</p>
                 </div>
                 <div class="grid-item">
-                    <i class="fas fa-users feature-icon"></i>
-                    <h3>Massive User Capacity</h3>
-                    <p>Host <span class="highlight-white">hundreds of simultaneous users</span> with <span class="highlight-white">minimal resource impact</span>. Perfect for  <span class="highlight-white">large-scale deployments</span> and public SDR services.</p>
+                    <h3>Advanced Signal Processing</h3>
+                    <p>By means of the latest methodologies in digital signal processing, PhantomSDR-Plus offers <span class="highlight-accent">impeccable reception and decoding</span> of the most widespread modes: FM, AM, SSB, and CW.</p>
                 </div>
                 <div class="grid-item">
-                    <i class="fas fa-microchip feature-icon"></i>
+                    <h3>Scalable Performance</h3>
+                    <p>Another strong point concerning PhantomSDR-Plus is its <span class="highlight-accent">easy scalability</span> with increased load from users. While classic WebSDR platforms cannot bear high counts of users, PhantomSDR-Plus shows the same performance with <span class="highlight-accent">hundreds of users</span> simultaneously operating it.</p>
+                </div>
+                <div class="grid-item">
                     <h3>GPU Acceleration</h3>
-                    <p><span class="highlight-white">Harness</span> the power of your <span class="highlight-white">GPU</span> for <span class="highlight-white">signal processing</span>, dramatically improving performance and <span class="highlight-white">user capacity</span> compared to CPU-only solutions.</p>
+                    <p>PhantomSDR-Plus puts modern GPU to work by accelerating the processing of the signals. Applying <span class="highlight-accent">Fast Convolution techniques</span> enables this platform to work efficiently and optionally offload computation to the GPU.</p>
                 </div>
                 <div class="grid-item">
-                    <i class="fas fa-code-branch feature-icon"></i>
-                    <h3>Actively Developed</h3>
-                    <p>Benefit from <span class="highlight-white">near-daily updates</span> and <span class="highlight-white">cutting-edge features</span>. Stay ahead of the curve with  <span class="highlight-white">the most advanced WebSDR</span> technology available.</p>
+                    <h3>WebAssembly Decoders</h3>
+                    <p>By embracing the most up-to-date Web technologies, PhantomSDR-Plus utilizes <span class="highlight-accent">WebAssembly-powered decoders</span> for digital modes like FT8. This guarantees that the decoding is extremely fast in the browser.</p>
                 </div>
                 <div class="grid-item">
-                    <i class="fas fa-broadcast-tower feature-icon"></i>
-                    <h3>Universal SDR Support</h3>
-                    <p>Run <span class="highlight-white">almost any SDR</span> through simple stdin input. Maximum <span class="highlight-white">compatibility</span> and <span class="highlight-white">flexibility</span> for your existing hardware.</p>
-                </div>
-                <div class="grid-item">
-                    <i class="fas fa-bolt feature-icon"></i>
-                    <h3>WebAssembly FT8 Decoder</h3>
-                    <p>Experience <span class="highlight-white">lightning-fast</span> decoding with our <span class="highlight-white">WebAssembly-powered</span> <span class="highlight-white">FT8</span> decoder. Stay ahead of the <span class="highlight-white">competition</span> with cutting-edge web technologies.</p>
+                    <h3>Hardware Flexibility</h3>
+                    <p>PhantomSDR-Plus is designed to run well on a broad spectrum of hardware, from modest setups to high-performance systems. It <span class="highlight-accent">scales up or down</span> the platform's functionalities to match your available resources for optimal performance in every situation.</p>
                 </div>
             </div>
         </div>
     </section>
+    
 
     <section id="comparison">
         <canvas id="comparisonCanvas"></canvas>
         <div class="container">
-            <h2>PhantomSDR-Plus vs. others</h2>
+            <h2>PhantomSDR-Plus in the WebSDR Landscape</h2>
+            <p>While we acknowledge and respect the contributions of all the other WebSDR variants out there, it is relevant to understand how PhantomSDR-Plus fits in the overall picture. Here are key feature comparisons on a rather neutral basis:</p>
             <table class="comparison-table">
-                <tr>
-                    <th>Feature</th>
-                    <th>PhantomSDR-Plus</th>
-                    <th>OpenWebRX</th>
-                    <th>KiwiSDR</th>
-                    <th>Web-888</th>
-                </tr>
-                <tr>
-                    <td>User Scaling</td>
-                    <td>Non-linear, stable for hundreds of users</td>
-                    <td>Linear scaling, performance degrades with more users</td>
-                    <td>Limited user capacity</td>
-                    <td>Limited user capacity</td>
-                </tr>
-                <tr>
-                    <td>Bandwidth</td>
-                    <td>Limited only by Hardware</td>
-                    <td>Limited</td>
-                    <td>0-30 MHz</td>
-                    <td>0-30 MHz</td>
-                </tr>
-                <tr>
-                    <td>GPU Acceleration</td>
-                    <td>Yes (using clFFT)</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <td>WebAssembly Decoders</td>
-                    <td>Yes (FT8)</td>
-                    <td>No</td>
-                    <td>No</td>
-                    <td>No</td>
-                </tr>
-                <tr>
-                    <td>Development Pace</td>
-                    <td>Active, near-daily updates</td>
-                    <td>Less frequent updates</td>
-                    <td>Infrequent updates</td>
-                    <td>Infrequent updates</td>
-                </tr>
-                <tr>
-                    <td>SDR Support</td>
-                    <td>Universal (stdin input)</td>
-                    <td>Limited to specific models</td>
-                    <td>Proprietary hardware</td>
-                    <td>Proprietary hardware</td>
-                </tr>
-                <tr>
-                    <td>Price (HF setup)</td>
-                    <td>€100 -> €300 (depends)</td>
-                    <td>Varies</td>
-                    <td>~€300</td>
-                    <td>€300</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>PhantomSDR-Plus</th>
+                        <th>OpenWebRX</th>
+                        <th>KiwiSDR</th>
+                        <th>Web-888</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Feature">User Scaling</td>
+                        <td data-label="PhantomSDR-Plus">Non-linear, stable for hundreds of users</td>
+                        <td data-label="OpenWebRX">Linear scaling, performance degrades with more users</td>
+                        <td data-label="KiwiSDR">Limited user capacity</td>
+                        <td data-label="Web-888">Limited user capacity</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Feature">Bandwidth</td>
+                        <td data-label="PhantomSDR-Plus">Limited only by Hardware</td>
+                        <td data-label="OpenWebRX">Limited</td>
+                        <td data-label="KiwiSDR">0-30 MHz</td>
+                        <td data-label="Web-888">0-30 MHz</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Feature">GPU Acceleration</td>
+                        <td data-label="PhantomSDR-Plus">Yes (using clFFT)</td>
+                        <td data-label="OpenWebRX">No</td>
+                        <td data-label="KiwiSDR">No</td>
+                        <td data-label="Web-888">No</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Feature">WebAssembly Decoders</td>
+                        <td data-label="PhantomSDR-Plus">Yes (FT8)</td>
+                        <td data-label="OpenWebRX">No</td>
+                        <td data-label="KiwiSDR">No (only backend)</td>
+                        <td data-label="Web-888">No (only backend)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Feature">Development Pace</td>
+                        <td data-label="PhantomSDR-Plus">Active, near-daily updates</td>
+                        <td data-label="OpenWebRX">Less frequent updates</td>
+                        <td data-label="KiwiSDR">No huge updates</td>
+                        <td data-label="Web-888">No huge updates</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Feature">SDR Support</td>
+                        <td data-label="PhantomSDR-Plus">Universal (stdin input)</td>
+                        <td data-label="OpenWebRX">Limited to specific models</td>
+                        <td data-label="KiwiSDR">Proprietary hardware</td>
+                        <td data-label="Web-888">Proprietary hardware</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Feature">Price (HF setup)</td>
+                        <td data-label="PhantomSDR-Plus">€30 -> €300 (Varies)</td>
+                        <td data-label="OpenWebRX">Varies</td>
+                        <td data-label="KiwiSDR">~€300</td>
+                        <td data-label="Web-888">€300</td>
+                    </tr>
+                </tbody>
             </table>
-            
+            <p>The given comparison underlines some special strengths of PhantomSDR-Plus, in particular regarding user scaling, GPU acceleration, and development pace. Nevertheless, each has its own merits that might be used in different scenarios.</p>
         </div>
     </section>
 
     <section id="benchmarks">
         <canvas id="benchmarksCanvas"></canvas>
         <div class="container">
-            <h2>Unmatched Performance</h2>
+            <h2>Numbers Don't Lie</h2>
+            <p>We could talk all day about how great PhantomSDR-Plus is, but let's let the benchmarks do the talking:</p>
             <div class="grid">
                 <div class="grid-item">
                     <h3>Ryzen 5 2600 (CPU)</h3>
-                    <p>RX888 MKii with <span class="highlight-white">32MHz</span> Sample Rate:</p>
+                    <p>Running an RX888 MKii with a whopping <span class="highlight-accent">32MHz Sample Rate</span>:</p>
                     <ul>
-                        <li>38-40% CPU usage</li>
-                        <li>50 users increase CPU usage by <span class="highlight-white"> less than 1%</span></li>
+                        <li>CPU usage: A chill <span class="highlight-accent">38-40%</span></li>
+                        <li>50 users? That will increase it by <span class="highlight-accent">less than 1%</span>. Yes, you read that right.</li>
                     </ul>
                 </div>
                 <div class="grid-item">
                     <h3>RX 580 (GPU)</h3>
-                    <p>RX888 MKII with <span class="highlight-white">32MHz</span> Sample Rate:</p>
+                    <p>Same setup, but letting the GPU flex its muscles:</p>
                     <ul>
-                        <li>28-35% GPU usage</li>
-                        <li>Minimal increase per additional user (should be none)</li>
+                        <li>GPU usage: A relaxed <span class="highlight-accent">28-35%</span></li>
+                        <li>More users? The GPU barely notices. It's like they're not even there.</li>
                     </ul>
                 </div>
                 <div class="grid-item">
                     <h3>i5 6500t</h3>
-                    <p><span class="highlight-white">32MHz</span> bandwidth from an RX888:</p>
+                    <p>Think you need a supercomputer? Think again:</p>
                     <ul>
-                        <li><span class="highlight-white"> Easily</span> handles more than 30 simultaneous users</li>
+                        <li>This modest chip handles <span class="highlight-accent">32MHz bandwidth</span> from an RX888</li>
+                        <li><span class="highlight-accent">30+ simultaneous users</span>? No issue.</li>
                     </ul>
                 </div>
                 <div class="grid-item">
                     <h3>Your Hardware</h3>
-                    <p>PhantomSDR-Plus <span class="highlight-white">scales</span> with your  <span class="highlight-white">hardware</span>. Upgrade your setup to unlock<span class="highlight-white"> even more </span>potential!</p>
+                    <p>PhantomSDR-Plus <span class="highlight-accent">scales</span> with your <span class="highlight-accent">hardware</span>. Upgrade your setup to unlock <span class="highlight-accent">even more</span> potential!</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+        
+    <section id="support">
+        <div class="container">
+            <h2>Support the Future of WebSDR</h2>
+            <p>PhantomSDR-Plus is a <span class="highlight-accent">community-driven project</span>, and we survive by your support. If you like our work and want to see us keep pushing the limit, be our supporter by donating.</p>
+            <p>Each cent counts, and with your donation, you are enabling us to invest even more of our time and resources into <span class="highlight-accent">further improving PhantomSDR-Plus</span>.</p>
+            <a href="https://paypal.me/brian1337z" class="btn" target="_blank">Support PhantomSDR-Plus</a>
         </div>
     </section>
 
@@ -412,12 +496,14 @@
         <canvas id="communityCanvas"></canvas>
         <div class="container">
             <h2>Join the Revolution</h2>
-            <p>Be part of the future of WebSDR technology. Join our growing community of enthusiasts, developers, and radio operators.</p>
-            <p>Explore public SDRs on <a href="https://sdr-list.xyz" target="_blank" class="highlight">sdr-list.xyz</a></p>
-            <p>Developed with passion by <span class="highlight">magicint1337</span> and <span class="highlight">Z1EJ200</span></p>
-            <a href="https://github.com/Steven9101/PhantomSDR-Plus" class="btn" target="_blank">Join Us on GitHub</a>
+            <p>But PhantomSDR-Plus is not just software; it's a <span class="highlight-accent">community</span>. A community of radio enthusiasts and innovators that pushed the boundaries of what was possible with WebSDR.</p>
+            <p>And that's just the beginning: more sites pop up all the time as people realize what PhantomSDR-Plus can do.</p>
+            <p>Lovingly crafted by the dynamic duo of <span class="highlight-accent">magicint1337</span> and <span class="highlight-accent">Z1EJ200</span>, PhantomSDR-Plus is more than just a project - it's a labor of love.</p>
+            <p>Ready to join us? Hop on over to our GitHub, or check out the growing list of public SDRs at <a href="https://sdr-list.xyz" target="_blank" class="highlight-accent">sdr-list.xyz</a>.</p>
+            <a href="https://github.com/Steven9101/PhantomSDR-Plus" class="btn" target="_blank">Join the PhantomSDR-Plus Community</a>
         </div>
     </section>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
@@ -635,6 +721,8 @@
                 }
             }
         });
+
+        
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
