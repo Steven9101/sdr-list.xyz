@@ -673,54 +673,6 @@
         animateConnections(setupCanvas('benchmarksCanvas'));
         animateRadioWaves(setupCanvas('communityCanvas'), 0.015, 25, 0.008);
 
-        // Benchmark chart
-        const ctx = document.getElementById('benchmarkChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Ryzen 5 2600 (CPU)', 'RX 580 (GPU)', 'i5 6500t', 'Coming Soon'],
-                datasets: [{
-                    label: 'Usage (%)',
-                    data: [39, 31.5, 60, null],
-                    backgroundColor: [
-                        'rgba(58, 134, 255, 0.6)',
-                        'rgba(138, 43, 226, 0.6)',
-                        'rgba(255, 99, 132, 0.6)',
-                        'rgba(100, 100, 100, 0.6)'
-                    ],
-                    borderColor: [
-                        'rgba(58, 134, 255, 1)',
-                        'rgba(138, 43, 226, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(100, 100, 100, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    title: {
-                        display: true,
-                        text: 'PhantomSDR-Plus Performance',
-                        color: 'rgba(255, 255, 255, 0.8)',
-                        font: {
-                            size: 16
-                        }
-                    }
-                }
-            }
-        });
-
         
 
         // Smooth scrolling
